@@ -1,15 +1,17 @@
 import React, { useState } from "react";
+import Projects from "./Projects";
 
 function App() {
   const [projects, setProjects] = useState([]);
 
   const getProjects = async () => {
     try {
-      const projects = await fetch(
+      const data = await fetch(
         "https://young-everglades-05589.herokuapp.com/api/projects"
       );
+      const projects = await data.json();
 
-      console.log(projects);
+      setProjects(projects);
     } catch (err) {
       console.error(err);
     }
@@ -20,6 +22,8 @@ function App() {
       <h1>*** Projects List API ***</h1>
 
       <button onClick={getProjects}>Show Projects</button>
+
+      <Projects projects={projects} />
     </div>
   );
 }
