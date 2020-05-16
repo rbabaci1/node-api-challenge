@@ -38,3 +38,11 @@ button:hover {
 span {
   color: #fff;
 }
+
+.projects {
+  display: flex;
+}
+
+.project {
+  border: 1px solid gray;
+}
