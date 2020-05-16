@@ -27,18 +27,18 @@ router.post("/:id", async (req, res, next) => {
   }
 });
 
-// router.get("/", async (req, res, next) => {
-//   try {
-//     const actions = await get();
+router.get("/", async (req, res, next) => {
+  try {
+    const actions = await get();
 
-//     res.status(200).json(actions);
-//   } catch (err) {
-//     next({
-//       error: "The actions could not be retrieved at this moment.",
-//       reason: err.message,
-//     });
-//   }
-// });
+    res.status(200).json(actions);
+  } catch (err) {
+    next({
+      error: "The actions could not be retrieved at this moment.",
+      reason: err.message,
+    });
+  }
+});
 
 router.put("/:id", async (req, res, next) => {
   try {
