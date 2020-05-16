@@ -28,7 +28,7 @@ function App() {
 
       <button onClick={getProjects}>Show Projects</button>
 
-      {loading && <span>Loading...</span>}
+      {loading && <p>Loading...</p>}
 
       {projects.length && <Projects projects={projects} />}
     </div>

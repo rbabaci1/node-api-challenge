@@ -17,18 +17,20 @@ export default function Projects({ projects }) {
   };
 
   return (
-    <div className='projects'>
-      {projects.map(project => (
-        <div className='project' key={project.id}>
-          <h1>
-            Name: <span>{project.name}</span>
-          </h1>
+    <>
+      <div className='projects'>
+        {projects.map(project => (
+          <div className='project' key={project.id}>
+            <h1>
+              Name: <span>{project.name}</span>
+            </h1>
 
-          <h1>
-            Description: <span>{project.description}</span>
-          </h1>
-        </div>
-      ))}
+            <h1>
+              Description: <span>{project.description}</span>
+            </h1>
+          </div>
+        ))}
+      </div>
 
       <button onClick={getActions}>Show Actions</button>
 
@@ -42,11 +44,11 @@ export default function Projects({ projects }) {
             </h1>
 
             <h1>
-              Name: <span>{action.notes}</span>
+              Notes: <span>{action.notes}</span>
             </h1>
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 }
