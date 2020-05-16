@@ -42,16 +42,16 @@ router.get("/", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
   try {
-    const changes = req.body;
     const { id } = req.params;
-    const updatedaction = await update(id, changes);
+    const changes = { project_id: id, ...req.body };
+    const updatedAction = await update(id, changes);
 
-    if (!updatedaction) {
+    if (!updatedAction) {
       res
         .status(404)
         .json({ message: "The action with specified ID does not exist." });
     } else {
-      res.status(200).json(updatedaction);
+      res.status(200).json(updatedAction);
     }
   } catch (err) {
     next({
