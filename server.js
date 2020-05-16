@@ -9,7 +9,7 @@ server.use(express.json());
 server.use(helmet());
 
 server.use("/api/projects", projectsRouter);
-// server.use("/api/actions", actionsRouter);
+server.use("/api/actions", actionsRouter);
 
 function errorHandler(error, req, res, next) {
   const code = error.status || error.statusCode || 500;
