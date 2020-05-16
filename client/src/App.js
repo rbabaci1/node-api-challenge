@@ -3,8 +3,11 @@ import Projects from "./Projects";
 
 function App() {
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const getProjects = async () => {
+    setLoading(true);
+
     try {
       const data = await fetch(
         "https://young-everglades-05589.herokuapp.com/api/projects"
@@ -12,8 +15,10 @@ function App() {
       const projects = await data.json();
 
       setProjects(projects);
+      setLoading(false);
     } catch (err) {
       console.error(err);
+      setLoading(false);
     }
   };
 
@@ -23,7 +28,7 @@ function App() {
 
       <button onClick={getProjects}>Show Projects</button>
 
-      <Projects projects={projects} />
+      {loading ? <span>Loading...</span> : <Projects projects={projects} />}
     </div>
   );
 }
