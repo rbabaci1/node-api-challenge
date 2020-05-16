@@ -64,14 +64,14 @@ router.put("/:id", async (req, res, next) => {
 router.delete("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const removedaction = await remove(id);
+    const removedAction = await remove(id);
 
-    if (removedaction === 0) {
+    if (removedAction === 0) {
       res.status(404).json({
         message: "The action with specified ID does not exist.",
       });
     } else {
-      res.status(202).json({ message: `action with "id: ${id}" is removed.` });
+      res.status(202).json({ message: `action with (id: ${id}) is removed.` });
     }
   } catch (err) {
     next({
