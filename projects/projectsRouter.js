@@ -1,7 +1,37 @@
 const express = require("express");
-const { get } = require("../data/helpers/projectModel");
+const {
+  get,
+  insert,
+  update,
+  remove,
+  getProjectActions,
+} = require("../data/helpers/projectModel");
 
 const router = express.Router();
+
+router.post("/", async (req, res, next) => {
+  try {
+    const project = req.body;
+
+    if (
+      !project.hasOwnProperty("name") ||
+      !project.hasOwnProperty("description")
+    ) {
+      res.status(400).json({
+        message: "Some info in the body is missing or incorrectly defined.",
+      });
+    } else {
+      const addedProject = await insert(project);
+
+      res.status(201).json(addedProject);
+    }
+  } catch (err) {
+    next({
+      error: "The project could not be added at this moment.",
+      reason: err.message,
+    });
+  }
+});
 
 router.get("/", async (req, res, next) => {
   try {
