@@ -46,6 +46,20 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.get("/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const projectActions = await getProjectActions(id);
+
+    res.status(200).json(projectActions);
+  } catch (err) {
+    next({
+      error: "The project actions could not be retrieved at this moment.",
+      reason: err.message,
+    });
+  }
+});
+
 router.put("/:id", async (req, res, next) => {
   try {
     const changes = req.body;
